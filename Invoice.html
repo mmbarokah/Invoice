@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="" type="image/x-icon">
+
+<title>Invoice Maker</title>
+<style>   
+html {background-color:darkslategrey;text-align: center;}
+body {position: relative;display: inline-block;text-align: center;background-color: white;width: 210mm; height: 297mm}
+</style>
+</head>
+
+<body>
+
+<style>
+    .Gambar {position: absolute; left: 50px; top: 40px; width: 70px; height: 70px;}
+    .inputGambar {display: none; position: fixed; left: 50%; top: 25px; transform: translate(-50%);}
+</style>
+
+<img onclick="editGambar()"class="Gambar" id="gambarBaru" src="">
+
+<div class="inputGambar" id="formGambar">
+    <input type="text" id="linkGambar" placeholder="Masukkan nama gambar">
+    <button onclick="simpanGambar()" id="simpanGambar">Simpan</button>
+</div>
+
+<script>
+
+    function editGambar() {
+    var displayGambar = document.getElementById("formGambar");
+    displayGambar.style.display = displayGambar.style.display ==="block" ? "none" : "block";
+
+    if (displayGambar.style.display === "block") {
+    document.getElementById("linkGambar").focus();
+    } 
+    }
+
+    function simpanGambar() {
+    var gambarInput = document.getElementById("linkGambar").value;
+    document.getElementById("gambarBaru").src = gambarInput;
+
+    document.getElementById("formGambar").style.display = "none";
+    }
+
+    document.getElementById("linkGambar").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanGambar').click();
+    }
+    });
+</script>
+<!---------------------------------------------------------------->
+
+<!--JUDUL-->
+<style>
+    .Judul {position: absolute; right: 50px; top: 25px; width: auto; text-align: right; line-height: 0.5;}
+
+    .inputInvoice {display: none; position: fixed; left: 50%;top:25px;transform: translate(-50%);}
+
+</style>
+<div class="Judul">
+    <h1>INVOICE</h1>
+    <h2 onclick="editInvoice()" id="invoiceBaru">#00001</h2>
+</div>
+
+<div class="inputInvoice" id="formInvoice">
+    <input type="text" id="noInvoice" placeholder="001">
+    <button onclick="simpanInvoice()" id="simpanInvoice">Simpan</button>
+</div>
+
+<script>
+    function editInvoice() {
+    var displayInvoice = document.getElementById("formInvoice");
+    displayInvoice.style.display = (displayInvoice.style.display ==="block") ? "none" : "block";
+    
+    if (displayInvoice.style.display === "block") {
+    document.getElementById("noInvoice").focus();
+    } 
+    }
+
+    function simpanInvoice() {
+    var invoiceInput = document.getElementById("noInvoice").value;
+    document.getElementById("invoiceBaru").textContent=("#"+invoiceInput);
+
+    document.getElementById("formInvoice").style.display = "none";
+    }
+    
+    document.getElementById("noInvoice").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanInvoice').click();
+    }
+    });
+
+</script>
+
+<hr style="position: absolute; top: 120px; left: 50%; transform: translate(-50%);height: 2px; border:none;width: 180mm;background-color: black; "></hr>
+<!----------------------------------------------------------->
+
+<!--KEPADA-->
+<style>
+    .Kepada {position: absolute; left: 50px; top: 140px; width: auto; text-align: left; line-height: 0.5;}
+
+    .inputKepada {display: none; position: fixed; left: 50%;top:25px;transform: translate(-50%);}
+
+    p {font-size: 17px;}
+
+</style>
+
+<div class="Kepada">
+    <h3>Kepada:</h3>
+    <p onclick="editKepada()" id="kepadaBaru">Joko</p>
+</div>
+
+<div class="inputKepada" id="formKepada">
+    <input type="text" id="Kepada" value="">
+    <button onclick="simpanKepada()" id="simpanKepada">Simpan</button>
+</div>
+
+<script>
+    function editKepada() {
+    var displayKepada = document.getElementById("formKepada");
+    displayKepada.style.display = displayKepada.style.display ==="block" ? "none" : "block";
+
+    if (displayKepada.style.display === "block") {
+    document.getElementById("Kepada").focus();
+    } 
+    }
+
+    function simpanKepada() {
+    var kepadaInput = document.getElementById("Kepada").value;
+    document.getElementById("kepadaBaru").textContent=kepadaInput;
+
+    document.getElementById("formKepada").style.display = "none";
+    }
+    
+    document.getElementById("Kepada").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanKepada').click();
+    }
+    });
+
+</script>
+<!----------------------------------------------------------->
+
+<!--TANGGAL-->
+<style>
+    .Tanggal {position: absolute; right: 50px; top: 140px; width: auto; text-align: right; line-height: 0.5;}
+
+    .inputTanggal {display: none; position: fixed; left: 50%;top:25px;transform: translate(-50%);}
+
+    p {font-size: 17px;}
+
+</style>
+
+<div class="Tanggal">
+    <h3>Tanggal:</h3>
+    <p onclick="editTanggal()" id="tanggalBaru">30 Oktober 2024</p>
+</div>
+
+<div class="inputTanggal" id="formTanggal">
+    <input type="date" id="Tanggal" value="">
+    <button onclick="simpanTanggal()" id="simpanTanggal">Simpan</button>
+</div>
+
+<script>
+    function editTanggal() {
+    var displayTanggal = document.getElementById("formTanggal");
+    displayTanggal.style.display = displayTanggal.style.display ==="block" ? "none" : "block";
+
+    if (displayTanggal.style.display === "block") {
+    document.getElementById("Tanggal").focus();
+    } 
+    }
+
+    function simpanTanggal() {
+    var tanggalInput = document.getElementById("Tanggal").value;
+    var tanggal = new Date(tanggalInput);
+    var options = {day: 'numeric', month: 'long', year: 'numeric'};
+    var tanggalFormat = tanggal.toLocaleDateString('id-ID', options);
+    document.getElementById("tanggalBaru").textContent=tanggalFormat;
+
+    document.getElementById("formTanggal").style.display = "none";
+    }
+    
+    document.getElementById("Tanggal").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanTanggal').click();
+    }
+    });
+
+</script>
+<!----------------------------------------------------------->
+
+<!--DAFTAR PRODUK-->
+<style>
+    .daftarProduk {position: absolute; top: 230px; left: 50%; transform: translate(-50%);}
+    table {width: 18cm; border-spacing: 0;}
+    th,td {border: 1px solid black;height: 0.8cm}
+    .tambahProduk {opacity: 0;border-style:hidden;}
+    thead {font-size: 17px;font-weight: bold;}
+    .inputProduk {display: none; position: fixed; left: 50%;top:25px;transform: translate(-50%);}
+    .inputHarga {display: none; position: fixed; left: 50%;top:25px;transform: translate(-50%);}
+    .inputJumlah {display: none; position: fixed; left: 50%;top:25px;transform: translate(-50%);}
+</style>
+
+<div class="daftarProduk">
+    <table>
+        <thead><tr>
+            <th style="width: 7cm">Nama Produk</th>
+            <th style="width: 4cm">Harga</th>
+            <th style="width: 3cm">Jumlah</th>
+            <th style="width: 4cm">Total</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+            <td id="produkBaru" onclick="editProduk()">Lampu</td>
+            <td id="hargaBaru" onclick="editHarga()">Rp1.000</td>
+            <td id="jumlahBaru" onclick="editJumlah()">5</td>
+            <td id="Total" onclick="hitungTotal()"></td>
+            <script>
+                //HITUNG TOTAL AWAL
+            {    
+                var hargaFormat = document.getElementById("hargaBaru").textContent.replace("Rp","");
+                var Harga = parseFloat(hargaFormat.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah = parseInt(document.getElementById("jumlahBaru").textContent);
+                var Total = Harga*Jumlah;
+            
+                document.getElementById("Total").textContent="Rp"+Total.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});}
+                 
+                //INPUT NAMA PRODUK
+                function editProduk() {
+                var displayProduk = document.getElementById("formProduk");
+                displayProduk.style.display = displayProduk.style.display ==="block" ? "none" : "block";
+            
+                if (displayProduk.style.display === "block") {
+                document.getElementById("Produk").focus();
+                } 
+                }
+            
+                function simpanProduk() {
+                var produkInput = document.getElementById("Produk").value;
+                document.getElementById("produkBaru").textContent=produkInput;
+            
+                document.getElementById("formProduk").style.display = "none";
+                }
+                
+                //INPUT HARGA
+                function editHarga() {
+                var displayHarga = document.getElementById("formHarga");
+                displayHarga.style.display = displayHarga.style.display ==="block" ? "none" : "block";
+            
+                if (displayHarga.style.display === "block") {
+                document.getElementById("Harga").focus();
+                } 
+                }
+            
+                function simpanHarga() {
+                var hargaInput = parseFloat(document.getElementById("Harga").value);
+            
+                var hargaFormat = hargaInput.toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                
+                document.getElementById("hargaBaru").textContent="Rp"+hargaFormat;
+            
+                document.getElementById("formHarga").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA HARGA UPDATE
+                var hargaFormat = document.getElementById("hargaBaru").textContent.replace("Rp","");
+                var Harga = parseFloat(hargaFormat.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah = parseInt(document.getElementById("jumlahBaru").textContent);
+                var Total = Harga*Jumlah;
+            
+                document.getElementById("Total").textContent="Rp"+Total.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+            
+                }
+                
+                //INPUT JUMLAH
+                function editJumlah() {
+                var displayJumlah = document.getElementById("formJumlah");
+                displayJumlah.style.display = displayJumlah.style.display ==="block" ? "none" : "block";
+            
+                if (displayJumlah.style.display === "block") {
+                document.getElementById("Jumlah").focus();
+                } 
+                }
+            
+                function simpanJumlah() {
+                var jumlahInput = parseInt(document.getElementById("Jumlah").value);
+                
+                document.getElementById("jumlahBaru").textContent=jumlahInput;
+            
+                document.getElementById("formJumlah").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA JUMLAH UPDATE
+                var hargaFormat = document.getElementById("hargaBaru").textContent.replace("Rp","");
+                var Harga = parseFloat(hargaFormat.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah = parseInt(document.getElementById("jumlahBaru").textContent);
+                var Total = Harga*Jumlah;
+            
+                document.getElementById("Total").textContent="Rp"+Total.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+            </script>
+        </tr>
+        <tr class="tambahProduk">
+            <td id="produkBaru2" onclick="editProduk2()"></td>
+            <td id="hargaBaru2" onclick="editHarga2()"></td>
+            <td id="jumlahBaru2" onclick="editJumlah2()"></td>
+            <td class="totalNaN" id="Total2" onclick="hitungTotal2()"></td>
+            <script>
+                //HITUNG TOTAL AWAL
+                {    
+                var hargaFormat2 = document.getElementById("hargaBaru2").textContent.replace("Rp","");
+                var Harga2 = parseFloat(hargaFormat2.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah2 = parseInt(document.getElementById("jumlahBaru2").textContent);
+                var Total2 = Harga2*Jumlah2;
+            
+                document.getElementById("Total2").textContent="Rp"+Total2.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+                 
+                //INPUT NAMA PRODUK
+                function editProduk2() 
+                {
+                var displayProduk2 = document.getElementById("formProduk2");
+                displayProduk2.style.display = displayProduk2.style.display ==="block" ? "none" : "block";
+            
+                if (displayProduk2.style.display === "block") {
+                document.getElementById("Produk2").focus();
+                } 
+                }
+            
+                function simpanProduk2() 
+                {
+                var produkInput2 = document.getElementById("Produk2").value;
+                document.getElementById("produkBaru2").textContent=produkInput2;
+            
+                document.getElementById("formProduk2").style.display = "none";
+                }
+                
+            
+                //INPUT HARGA
+                function editHarga2() 
+                {
+                var displayHarga2 = document.getElementById("formHarga2");
+                displayHarga2.style.display = displayHarga2.style.display ==="block" ? "none" : "block";
+            
+                if (displayHarga2.style.display === "block") {
+                document.getElementById("Harga2").focus();
+                } 
+                }
+            
+                function simpanHarga2() 
+                {
+                var hargaInput2 = parseFloat(document.getElementById("Harga2").value);
+            
+                var hargaFormat2 = hargaInput2.toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                
+                document.getElementById("hargaBaru2").textContent="Rp"+hargaFormat2;
+            
+                document.getElementById("formHarga2").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA HARGA UPDATE
+                var hargaFormat2 = document.getElementById("hargaBaru2").textContent.replace("Rp","");
+                var Harga2 = parseFloat(hargaFormat2.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah2 = parseInt(document.getElementById("jumlahBaru2").textContent);
+                var Total2 = Harga2*Jumlah2;
+            
+                document.getElementById("Total2").textContent="Rp"+Total2.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+            
+                //INPUT JUMLAH
+                function editJumlah2() 
+                {
+                var displayJumlah2 = document.getElementById("formJumlah2");
+                displayJumlah2.style.display = displayJumlah2.style.display ==="block" ? "none" : "block";
+            
+                if (displayJumlah2.style.display === "block") {
+                document.getElementById("Jumlah2").focus();
+                } 
+                }
+            
+                function simpanJumlah2() 
+                {
+                var jumlahInput2 = parseInt(document.getElementById("Jumlah2").value);
+                
+                document.getElementById("jumlahBaru2").textContent=jumlahInput2;
+            
+                document.getElementById("formJumlah2").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA JUMLAH UPDATE
+                var hargaFormat2 = document.getElementById("hargaBaru2").textContent.replace("Rp","");
+                var Harga2 = parseFloat(hargaFormat2.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah2 = parseInt(document.getElementById("jumlahBaru2").textContent);
+                var Total2 = Harga2*Jumlah2;
+            
+                document.getElementById("Total2").textContent="Rp"+Total2.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }  
+            </script>
+        </tr>
+        <tr class="tambahProduk">
+            <td id="produkBaru3" onclick="editProduk3()"></td>
+            <td id="hargaBaru3" onclick="editHarga3()"></td>
+            <td id="jumlahBaru3" onclick="editJumlah3()"></td>
+            <td class="totalNaN" id="Total3" onclick="hitungTotal3()"></td>
+            <script>
+                //HITUNG TOTAL AWAL
+                {    
+                var hargaFormat3 = document.getElementById("hargaBaru3").textContent.replace("Rp","");
+                var Harga3 = parseFloat(hargaFormat3.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah3 = parseInt(document.getElementById("jumlahBaru3").textContent);
+                var Total3 = Harga3*Jumlah3;
+            
+                document.getElementById("Total3").textContent="Rp"+Total3.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+                 
+                //INPUT NAMA PRODUK
+                function editProduk3() 
+                {
+                var displayProduk3 = document.getElementById("formProduk3");
+                displayProduk3.style.display = displayProduk3.style.display ==="block" ? "none" : "block";
+            
+                if (displayProduk3.style.display === "block") {
+                document.getElementById("Produk3").focus();
+                } 
+                }
+            
+                function simpanProduk3() 
+                {
+                var produkInput3 = document.getElementById("Produk3").value;
+                document.getElementById("produkBaru3").textContent=produkInput3;
+            
+                document.getElementById("formProduk3").style.display = "none";
+                }
+                
+            
+                //INPUT HARGA
+                function editHarga3() 
+                {
+                var displayHarga3 = document.getElementById("formHarga3");
+                displayHarga3.style.display = displayHarga3.style.display ==="block" ? "none" : "block";
+            
+                if (displayHarga3.style.display === "block") {
+                document.getElementById("Harga3").focus();
+                } 
+                }
+            
+                function simpanHarga3() 
+                {
+                var hargaInput3 = parseFloat(document.getElementById("Harga3").value);
+            
+                var hargaFormat3 = hargaInput3.toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                
+                document.getElementById("hargaBaru3").textContent="Rp"+hargaFormat3;
+            
+                document.getElementById("formHarga3").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA HARGA UPDATE
+                var hargaFormat3 = document.getElementById("hargaBaru3").textContent.replace("Rp","");
+                var Harga3 = parseFloat(hargaFormat3.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah3 = parseInt(document.getElementById("jumlahBaru3").textContent);
+                var Total3 = Harga3*Jumlah3;
+            
+                document.getElementById("Total3").textContent="Rp"+Total3.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+            
+                //INPUT JUMLAH
+                function editJumlah3() 
+                {
+                var displayJumlah3 = document.getElementById("formJumlah3");
+                displayJumlah3.style.display = displayJumlah3.style.display ==="block" ? "none" : "block";
+            
+                if (displayJumlah3.style.display === "block") {
+                document.getElementById("Jumlah3").focus();
+                } 
+                }
+            
+                function simpanJumlah3() 
+                {
+                var jumlahInput3 = parseInt(document.getElementById("Jumlah3").value);
+                
+                document.getElementById("jumlahBaru3").textContent=jumlahInput3;
+            
+                document.getElementById("formJumlah3").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA JUMLAH UPDATE
+                var hargaFormat3 = document.getElementById("hargaBaru3").textContent.replace("Rp","");
+                var Harga3 = parseFloat(hargaFormat3.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah3 = parseInt(document.getElementById("jumlahBaru3").textContent);
+                var Total3 = Harga3*Jumlah3;
+            
+                document.getElementById("Total3").textContent="Rp"+Total3.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }  
+            </script>
+        </tr>
+        <tr class="tambahProduk">
+            <td id="produkBaru4" onclick="editProduk4()"></td>
+            <td id="hargaBaru4" onclick="editHarga4()"></td>
+            <td id="jumlahBaru4" onclick="editJumlah4()"></td>
+            <td class="totalNaN" id="Total4" onclick="hitungTotal4()"></td>
+            <script>
+                //HITUNG TOTAL AWAL
+                {    
+                var hargaFormat4 = document.getElementById("hargaBaru4").textContent.replace("Rp","");
+                var Harga4 = parseFloat(hargaFormat4.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah4 = parseInt(document.getElementById("jumlahBaru4").textContent);
+                var Total4 = Harga4*Jumlah4;
+            
+                document.getElementById("Total4").textContent="Rp"+Total4.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+                 
+                //INPUT NAMA PRODUK
+                function editProduk4() 
+                {
+                var displayProduk4 = document.getElementById("formProduk4");
+                displayProduk4.style.display = displayProduk4.style.display ==="block" ? "none" : "block";
+            
+                if (displayProduk4.style.display === "block") {
+                document.getElementById("Produk4").focus();
+                } 
+                }
+            
+                function simpanProduk4() 
+                {
+                var produkInput4 = document.getElementById("Produk4").value;
+                document.getElementById("produkBaru4").textContent=produkInput4;
+            
+                document.getElementById("formProduk4").style.display = "none";
+                }
+                
+            
+                //INPUT HARGA
+                function editHarga4() 
+                {
+                var displayHarga4 = document.getElementById("formHarga4");
+                displayHarga4.style.display = displayHarga4.style.display ==="block" ? "none" : "block";
+            
+                if (displayHarga4.style.display === "block") {
+                document.getElementById("Harga4").focus();
+                } 
+                }
+            
+                function simpanHarga4() 
+                {
+                var hargaInput4 = parseFloat(document.getElementById("Harga4").value);
+            
+                var hargaFormat4 = hargaInput4.toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                
+                document.getElementById("hargaBaru4").textContent="Rp"+hargaFormat4;
+            
+                document.getElementById("formHarga4").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA HARGA UPDATE
+                var hargaFormat4 = document.getElementById("hargaBaru4").textContent.replace("Rp","");
+                var Harga4 = parseFloat(hargaFormat4.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah4 = parseInt(document.getElementById("jumlahBaru4").textContent);
+                var Total4 = Harga4*Jumlah4;
+            
+                document.getElementById("Total4").textContent="Rp"+Total4.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+            
+                //INPUT JUMLAH
+                function editJumlah4() 
+                {
+                var displayJumlah4 = document.getElementById("formJumlah4");
+                displayJumlah4.style.display = displayJumlah4.style.display ==="block" ? "none" : "block";
+            
+                if (displayJumlah4.style.display === "block") {
+                document.getElementById("Jumlah4").focus();
+                } 
+                }
+            
+                function simpanJumlah4() 
+                {
+                var jumlahInput4 = parseInt(document.getElementById("Jumlah4").value);
+                
+                document.getElementById("jumlahBaru4").textContent=jumlahInput4;
+            
+                document.getElementById("formJumlah4").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA JUMLAH UPDATE
+                var hargaFormat4 = document.getElementById("hargaBaru4").textContent.replace("Rp","");
+                var Harga4 = parseFloat(hargaFormat4.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah4 = parseInt(document.getElementById("jumlahBaru4").textContent);
+                var Total4 = Harga4*Jumlah4;
+            
+                document.getElementById("Total4").textContent="Rp"+Total4.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }  
+            </script>
+        </tr>
+        <tr class="tambahProduk">
+            <td id="produkBaru5" onclick="editProduk5()"></td>
+            <td id="hargaBaru5" onclick="editHarga5()"></td>
+            <td id="jumlahBaru5" onclick="editJumlah5()"></td>
+            <td class="totalNaN" id="Total5" onclick="hitungTotal5()"></td>
+            <script>
+                //HITUNG TOTAL AWAL
+                {    
+                var hargaFormat5 = document.getElementById("hargaBaru5").textContent.replace("Rp","");
+                var Harga5 = parseFloat(hargaFormat5.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah5 = parseInt(document.getElementById("jumlahBaru5").textContent);
+                var Total5 = Harga5*Jumlah5;
+            
+                document.getElementById("Total5").textContent="Rp"+Total5.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+                 
+                //INPUT NAMA PRODUK
+                function editProduk5() 
+                {
+                var displayProduk5 = document.getElementById("formProduk5");
+                displayProduk5.style.display = displayProduk5.style.display ==="block" ? "none" : "block";
+            
+                if (displayProduk5.style.display === "block") {
+                document.getElementById("Produk5").focus();
+                } 
+                }
+            
+                function simpanProduk5() 
+                {
+                var produkInput5 = document.getElementById("Produk5").value;
+                document.getElementById("produkBaru5").textContent=produkInput5;
+            
+                document.getElementById("formProduk5").style.display = "none";
+                }
+                
+            
+                //INPUT HARGA
+                function editHarga5() 
+                {
+                var displayHarga5 = document.getElementById("formHarga5");
+                displayHarga5.style.display = displayHarga5.style.display ==="block" ? "none" : "block";
+            
+                if (displayHarga5.style.display === "block") {
+                document.getElementById("Harga5").focus();
+                } 
+                }
+            
+                function simpanHarga5() 
+                {
+                var hargaInput5 = parseFloat(document.getElementById("Harga5").value);
+            
+                var hargaFormat5 = hargaInput5.toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                
+                document.getElementById("hargaBaru5").textContent="Rp"+hargaFormat5;
+            
+                document.getElementById("formHarga5").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA HARGA UPDATE
+                var hargaFormat5 = document.getElementById("hargaBaru5").textContent.replace("Rp","");
+                var Harga5 = parseFloat(hargaFormat5.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah5 = parseInt(document.getElementById("jumlahBaru5").textContent);
+                var Total5 = Harga5*Jumlah5;
+            
+                document.getElementById("Total5").textContent="Rp"+Total5.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+            
+                //INPUT JUMLAH
+                function editJumlah5() 
+                {
+                var displayJumlah5 = document.getElementById("formJumlah5");
+                displayJumlah5.style.display = displayJumlah5.style.display ==="block" ? "none" : "block";
+            
+                if (displayJumlah5.style.display === "block") {
+                document.getElementById("Jumlah5").focus();
+                } 
+                }
+            
+                function simpanJumlah5() 
+                {
+                var jumlahInput5 = parseInt(document.getElementById("Jumlah5").value);
+                
+                document.getElementById("jumlahBaru5").textContent=jumlahInput5;
+            
+                document.getElementById("formJumlah5").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA JUMLAH UPDATE
+                var hargaFormat5 = document.getElementById("hargaBaru5").textContent.replace("Rp","");
+                var Harga5 = parseFloat(hargaFormat5.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah5 = parseInt(document.getElementById("jumlahBaru5").textContent);
+                var Total5 = Harga5*Jumlah5;
+            
+                document.getElementById("Total5").textContent="Rp"+Total5.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }  
+            </script>
+        </tr>
+        <tr class="tambahProduk">
+            <td id="produkBaru6" onclick="editProduk6()"></td>
+            <td id="hargaBaru6" onclick="editHarga6()"></td>
+            <td id="jumlahBaru6" onclick="editJumlah6()"></td>
+            <td class="totalNaN" id="Total6" onclick="hitungTotal6()"></td>
+            <script>
+                //HITUNG TOTAL AWAL
+                {    
+                var hargaFormat6 = document.getElementById("hargaBaru6").textContent.replace("Rp","");
+                var Harga6 = parseFloat(hargaFormat6.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah6 = parseInt(document.getElementById("jumlahBaru6").textContent);
+                var Total6 = Harga6*Jumlah6;
+            
+                document.getElementById("Total6").textContent="Rp"+Total6.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+                 
+                //INPUT NAMA PRODUK
+                function editProduk6() 
+                {
+                var displayProduk6 = document.getElementById("formProduk6");
+                displayProduk6.style.display = displayProduk6.style.display ==="block" ? "none" : "block";
+            
+                if (displayProduk6.style.display === "block") {
+                document.getElementById("Produk6").focus();
+                } 
+                }
+            
+                function simpanProduk6() 
+                {
+                var produkInput6 = document.getElementById("Produk6").value;
+                document.getElementById("produkBaru6").textContent=produkInput6;
+            
+                document.getElementById("formProduk6").style.display = "none";
+                }
+                
+            
+                //INPUT HARGA
+                function editHarga6() 
+                {
+                var displayHarga6 = document.getElementById("formHarga6");
+                displayHarga6.style.display = displayHarga6.style.display ==="block" ? "none" : "block";
+            
+                if (displayHarga6.style.display === "block") {
+                document.getElementById("Harga6").focus();
+                } 
+                }
+            
+                function simpanHarga6() 
+                {
+                var hargaInput6 = parseFloat(document.getElementById("Harga6").value);
+            
+                var hargaFormat6 = hargaInput6.toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                
+                document.getElementById("hargaBaru6").textContent="Rp"+hargaFormat6;
+            
+                document.getElementById("formHarga6").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA HARGA UPDATE
+                var hargaFormat6 = document.getElementById("hargaBaru6").textContent.replace("Rp","");
+                var Harga6 = parseFloat(hargaFormat6.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah6 = parseInt(document.getElementById("jumlahBaru6").textContent);
+                var Total6 = Harga6*Jumlah6;
+            
+                document.getElementById("Total6").textContent="Rp"+Total6.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+            
+                //INPUT JUMLAH
+                function editJumlah6() 
+                {
+                var displayJumlah6 = document.getElementById("formJumlah6");
+                displayJumlah6.style.display = displayJumlah6.style.display ==="block" ? "none" : "block";
+            
+                if (displayJumlah6.style.display === "block") {
+                document.getElementById("Jumlah6").focus();
+                } 
+                }
+            
+                function simpanJumlah6() 
+                {
+                var jumlahInput6 = parseInt(document.getElementById("Jumlah6").value);
+                
+                document.getElementById("jumlahBaru6").textContent=jumlahInput6;
+            
+                document.getElementById("formJumlah6").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA JUMLAH UPDATE
+                var hargaFormat6 = document.getElementById("hargaBaru6").textContent.replace("Rp","");
+                var Harga6 = parseFloat(hargaFormat6.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah6 = parseInt(document.getElementById("jumlahBaru6").textContent);
+                var Total6 = Harga6*Jumlah6;
+            
+                document.getElementById("Total6").textContent="Rp"+Total6.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }  
+            </script>
+        </tr>
+        <tr class="tambahProduk">
+            <td id="produkBaru7" onclick="editProduk7()"></td>
+            <td id="hargaBaru7" onclick="editHarga7()"></td>
+            <td id="jumlahBaru7" onclick="editJumlah7()"></td>
+            <td class="totalNaN" id="Total7" onclick="hitungTotal7()"></td>
+            <script>
+                //HITUNG TOTAL AWAL
+                {    
+                var hargaFormat7 = document.getElementById("hargaBaru7").textContent.replace("Rp","");
+                var Harga7 = parseFloat(hargaFormat7.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah7 = parseInt(document.getElementById("jumlahBaru7").textContent);
+                var Total7 = Harga7*Jumlah7;
+            
+                document.getElementById("Total7").textContent="Rp"+Total7.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+                 
+                //INPUT NAMA PRODUK
+                function editProduk7() 
+                {
+                var displayProduk7 = document.getElementById("formProduk7");
+                displayProduk7.style.display = displayProduk7.style.display ==="block" ? "none" : "block";
+            
+                if (displayProduk7.style.display === "block") {
+                document.getElementById("Produk7").focus();
+                } 
+                }
+            
+                function simpanProduk7() 
+                {
+                var produkInput7 = document.getElementById("Produk7").value;
+                document.getElementById("produkBaru7").textContent=produkInput7;
+            
+                document.getElementById("formProduk7").style.display = "none";
+                }
+                
+            
+                //INPUT HARGA
+                function editHarga7() 
+                {
+                var displayHarga7 = document.getElementById("formHarga7");
+                displayHarga7.style.display = displayHarga7.style.display ==="block" ? "none" : "block";
+            
+                if (displayHarga7.style.display === "block") {
+                document.getElementById("Harga7").focus();
+                } 
+                }
+            
+                function simpanHarga7() 
+                {
+                var hargaInput7 = parseFloat(document.getElementById("Harga7").value);
+            
+                var hargaFormat7 = hargaInput7.toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                
+                document.getElementById("hargaBaru7").textContent="Rp"+hargaFormat7;
+            
+                document.getElementById("formHarga7").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA HARGA UPDATE
+                var hargaFormat7 = document.getElementById("hargaBaru7").textContent.replace("Rp","");
+                var Harga7 = parseFloat(hargaFormat7.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah7 = parseInt(document.getElementById("jumlahBaru7").textContent);
+                var Total7 = Harga7*Jumlah7;
+            
+                document.getElementById("Total7").textContent="Rp"+Total7.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+            
+                //INPUT JUMLAH
+                function editJumlah7() 
+                {
+                var displayJumlah7 = document.getElementById("formJumlah7");
+                displayJumlah7.style.display = displayJumlah7.style.display ==="block" ? "none" : "block";
+            
+                if (displayJumlah7.style.display === "block") {
+                document.getElementById("Jumlah7").focus();
+                } 
+                }
+            
+                function simpanJumlah7() 
+                {
+                var jumlahInput7 = parseInt(document.getElementById("Jumlah7").value);
+                
+                document.getElementById("jumlahBaru7").textContent=jumlahInput7;
+            
+                document.getElementById("formJumlah7").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA JUMLAH UPDATE
+                var hargaFormat7 = document.getElementById("hargaBaru7").textContent.replace("Rp","");
+                var Harga7 = parseFloat(hargaFormat7.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah7 = parseInt(document.getElementById("jumlahBaru7").textContent);
+                var Total7 = Harga7*Jumlah7;
+            
+                document.getElementById("Total7").textContent="Rp"+Total7.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }  
+            </script>
+        </tr>
+        <tr class="tambahProduk">
+            <td id="produkBaru8" onclick="editProduk8()"></td>
+            <td id="hargaBaru8" onclick="editHarga8()"></td>
+            <td id="jumlahBaru8" onclick="editJumlah8()"></td>
+            <td class="totalNaN" id="Total8" onclick="hitungTotal8()"></td>
+            <script>
+                //HITUNG TOTAL AWAL
+                {    
+                var hargaFormat8 = document.getElementById("hargaBaru8").textContent.replace("Rp","");
+                var Harga8 = parseFloat(hargaFormat8.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah8 = parseInt(document.getElementById("jumlahBaru8").textContent);
+                var Total8 = Harga8*Jumlah8;
+            
+                document.getElementById("Total8").textContent="Rp"+Total8.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+                 
+                //INPUT NAMA PRODUK
+                function editProduk8() 
+                {
+                var displayProduk8 = document.getElementById("formProduk8");
+                displayProduk8.style.display = displayProduk8.style.display ==="block" ? "none" : "block";
+            
+                if (displayProduk8.style.display === "block") {
+                document.getElementById("Produk8").focus();
+                } 
+                }
+            
+                function simpanProduk8() 
+                {
+                var produkInput8 = document.getElementById("Produk8").value;
+                document.getElementById("produkBaru8").textContent=produkInput8;
+            
+                document.getElementById("formProduk8").style.display = "none";
+                }
+                
+            
+                //INPUT HARGA
+                function editHarga8() 
+                {
+                var displayHarga8 = document.getElementById("formHarga8");
+                displayHarga8.style.display = displayHarga8.style.display ==="block" ? "none" : "block";
+            
+                if (displayHarga8.style.display === "block") {
+                document.getElementById("Harga8").focus();
+                } 
+                }
+            
+                function simpanHarga8() 
+                {
+                var hargaInput8 = parseFloat(document.getElementById("Harga8").value);
+            
+                var hargaFormat8 = hargaInput8.toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                
+                document.getElementById("hargaBaru8").textContent="Rp"+hargaFormat8;
+            
+                document.getElementById("formHarga8").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA HARGA UPDATE
+                var hargaFormat8 = document.getElementById("hargaBaru8").textContent.replace("Rp","");
+                var Harga8 = parseFloat(hargaFormat8.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah8 = parseInt(document.getElementById("jumlahBaru8").textContent);
+                var Total8 = Harga8*Jumlah8;
+            
+                document.getElementById("Total8").textContent="Rp"+Total8.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+            
+                //INPUT JUMLAH
+                function editJumlah8() 
+                {
+                var displayJumlah8 = document.getElementById("formJumlah8");
+                displayJumlah8.style.display = displayJumlah8.style.display ==="block" ? "none" : "block";
+            
+                if (displayJumlah8.style.display === "block") {
+                document.getElementById("Jumlah8").focus();
+                } 
+                }
+            
+                function simpanJumlah8() 
+                {
+                var jumlahInput8 = parseInt(document.getElementById("Jumlah8").value);
+                
+                document.getElementById("jumlahBaru8").textContent=jumlahInput8;
+            
+                document.getElementById("formJumlah8").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA JUMLAH UPDATE
+                var hargaFormat8 = document.getElementById("hargaBaru8").textContent.replace("Rp","");
+                var Harga8 = parseFloat(hargaFormat8.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah8 = parseInt(document.getElementById("jumlahBaru8").textContent);
+                var Total8 = Harga8*Jumlah8;
+            
+                document.getElementById("Total8").textContent="Rp"+Total8.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }  
+            </script>
+        </tr>
+        <tr class="tambahProduk">
+            <td id="produkBaru9" onclick="editProduk9()"></td>
+            <td id="hargaBaru9" onclick="editHarga9()"></td>
+            <td id="jumlahBaru9" onclick="editJumlah9()"></td>
+            <td class="totalNaN" id="Total9" onclick="hitungTotal9()"></td>
+            <script>
+                //HITUNG TOTAL AWAL
+                {    
+                var hargaFormat9 = document.getElementById("hargaBaru9").textContent.replace("Rp","");
+                var Harga9 = parseFloat(hargaFormat9.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah9 = parseInt(document.getElementById("jumlahBaru9").textContent);
+                var Total9 = Harga9*Jumlah9;
+            
+                document.getElementById("Total9").textContent="Rp"+Total9.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+                 
+                //INPUT NAMA PRODUK
+                function editProduk9() 
+                {
+                var displayProduk9 = document.getElementById("formProduk9");
+                displayProduk9.style.display = displayProduk9.style.display ==="block" ? "none" : "block";
+            
+                if (displayProduk9.style.display === "block") {
+                document.getElementById("Produk9").focus();
+                } 
+                }
+            
+                function simpanProduk9() 
+                {
+                var produkInput9 = document.getElementById("Produk9").value;
+                document.getElementById("produkBaru9").textContent=produkInput9;
+            
+                document.getElementById("formProduk9").style.display = "none";
+                }
+                
+            
+                //INPUT HARGA
+                function editHarga9() 
+                {
+                var displayHarga9 = document.getElementById("formHarga9");
+                displayHarga9.style.display = displayHarga9.style.display ==="block" ? "none" : "block";
+            
+                if (displayHarga9.style.display === "block") {
+                document.getElementById("Harga9").focus();
+                } 
+                }
+            
+                function simpanHarga9() 
+                {
+                var hargaInput9 = parseFloat(document.getElementById("Harga9").value);
+            
+                var hargaFormat9 = hargaInput9.toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                
+                document.getElementById("hargaBaru9").textContent="Rp"+hargaFormat9;
+            
+                document.getElementById("formHarga9").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA HARGA UPDATE
+                var hargaFormat9 = document.getElementById("hargaBaru9").textContent.replace("Rp","");
+                var Harga9 = parseFloat(hargaFormat9.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah9 = parseInt(document.getElementById("jumlahBaru9").textContent);
+                var Total9 = Harga9*Jumlah9;
+            
+                document.getElementById("Total9").textContent="Rp"+Total9.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+            
+                //INPUT JUMLAH
+                function editJumlah9() 
+                {
+                var displayJumlah9 = document.getElementById("formJumlah9");
+                displayJumlah9.style.display = displayJumlah9.style.display ==="block" ? "none" : "block";
+            
+                if (displayJumlah9.style.display === "block") {
+                document.getElementById("Jumlah9").focus();
+                } 
+                }
+            
+                function simpanJumlah9() 
+                {
+                var jumlahInput9 = parseInt(document.getElementById("Jumlah9").value);
+                
+                document.getElementById("jumlahBaru9").textContent=jumlahInput9;
+            
+                document.getElementById("formJumlah9").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA JUMLAH UPDATE
+                var hargaFormat9 = document.getElementById("hargaBaru9").textContent.replace("Rp","");
+                var Harga9 = parseFloat(hargaFormat9.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah9 = parseInt(document.getElementById("jumlahBaru9").textContent);
+                var Total9 = Harga9*Jumlah9;
+            
+                document.getElementById("Total9").textContent="Rp"+Total9.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }  
+            </script>
+        </tr>
+        <tr class="tambahProduk">
+            <td id="produkBaru10" onclick="editProduk10()"></td>
+            <td id="hargaBaru10" onclick="editHarga10()"></td>
+            <td id="jumlahBaru10" onclick="editJumlah10()"></td>
+            <td class="totalNaN" id="Total10" onclick="hitungTotal10()"></td>
+            <script>
+                //HITUNG TOTAL AWAL
+                {    
+                var hargaFormat10 = document.getElementById("hargaBaru10").textContent.replace("Rp","");
+                var Harga10 = parseFloat(hargaFormat10.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah10 = parseInt(document.getElementById("jumlahBaru10").textContent);
+                var Total10 = Harga10*Jumlah10;
+            
+                document.getElementById("Total10").textContent="Rp"+Total10.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+                 
+                //INPUT NAMA PRODUK
+                function editProduk10() 
+                {
+                var displayProduk10 = document.getElementById("formProduk10");
+                displayProduk10.style.display = displayProduk10.style.display ==="block" ? "none" : "block";
+            
+                if (displayProduk10.style.display === "block") {
+                document.getElementById("Produk10").focus();
+                } 
+                }
+            
+                function simpanProduk10() 
+                {
+                var produkInput10 = document.getElementById("Produk10").value;
+                document.getElementById("produkBaru10").textContent=produkInput10;
+            
+                document.getElementById("formProduk10").style.display = "none";
+                }
+                
+            
+                //INPUT HARGA
+                function editHarga10() 
+                {
+                var displayHarga10 = document.getElementById("formHarga10");
+                displayHarga10.style.display = displayHarga10.style.display ==="block" ? "none" : "block";
+            
+                if (displayHarga10.style.display === "block") {
+                document.getElementById("Harga10").focus();
+                } 
+                }
+            
+                function simpanHarga10() 
+                {
+                var hargaInput10 = parseFloat(document.getElementById("Harga10").value);
+            
+                var hargaFormat10 = hargaInput10.toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                
+                document.getElementById("hargaBaru10").textContent="Rp"+hargaFormat10;
+            
+                document.getElementById("formHarga10").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA HARGA UPDATE
+                var hargaFormat10 = document.getElementById("hargaBaru10").textContent.replace("Rp","");
+                var Harga10 = parseFloat(hargaFormat10.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah10 = parseInt(document.getElementById("jumlahBaru10").textContent);
+                var Total10 = Harga10*Jumlah10;
+            
+                document.getElementById("Total10").textContent="Rp"+Total10.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }
+            
+                //INPUT JUMLAH
+                function editJumlah10() 
+                {
+                var displayJumlah10 = document.getElementById("formJumlah10");
+                displayJumlah10.style.display = displayJumlah10.style.display ==="block" ? "none" : "block";
+            
+                if (displayJumlah10.style.display === "block") {
+                document.getElementById("Jumlah10").focus();
+                } 
+                }
+            
+                function simpanJumlah10() 
+                {
+                var jumlahInput10 = parseInt(document.getElementById("Jumlah10").value);
+                
+                document.getElementById("jumlahBaru10").textContent=jumlahInput10;
+            
+                document.getElementById("formJumlah10").style.display = "none";
+            
+                //HITUNG TOTAL KETIKA JUMLAH UPDATE
+                var hargaFormat10 = document.getElementById("hargaBaru10").textContent.replace("Rp","");
+                var Harga10 = parseFloat(hargaFormat10.replace(/\./g,'').replace(/,/g,'.'));
+                var Jumlah10 = parseInt(document.getElementById("jumlahBaru10").textContent);
+                var Total10 = Harga10*Jumlah10;
+            
+                document.getElementById("Total10").textContent="Rp"+Total10.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+                }  
+            </script>
+        </tr>
+
+        
+    </tbody>
+    </table>
+
+</div>
+
+<!--SCRIPT HIDDEN/SHOW TAMBAH PRODUK-->
+<script>
+
+    const tambahProduk = document.getElementsByClassName("tambahProduk");
+    for (let i = 0; i < tambahProduk.length; i++)
+    {
+    tambahProduk[i].addEventListener('click', () => {
+    tambahProduk[i].classList.add('clicked');
+    });
+    }
+    
+    for (let i = 0; i < tambahProduk.length; i++)
+    {
+    tambahProduk[i].addEventListener('mouseover', () => 
+    {
+        if (!tambahProduk[i].classList.contains('clicked')) 
+        {
+            tambahProduk[i].style.opacity='0.5';
+        }
+        else if (tambahProduk[i].classList.contains('clicked'))
+        {
+            tambahProduk[i].style.opacity='1';
+        }
+        
+    });
+    }
+    
+    for (let i = 0; i < tambahProduk.length; i++)
+    {
+    tambahProduk[i].addEventListener('mouseout', () => 
+    {
+        if (!tambahProduk[i].classList.contains('clicked')) 
+        {
+        tambahProduk[i].style.opacity='0';
+        }
+        else if (tambahProduk[i].classList.contains('clicked'))
+        {
+            tambahProduk[i].style.opacity='1';
+        }
+    });
+    }
+</script>
+
+<!--FORM TAMBAH PRODUK 1-->
+<div class="inputProduk" id="formProduk">
+    <input type="text" id="Produk">
+    <button onclick="simpanProduk()" id="simpanProduk">Simpan</button>
+</div>
+
+<div class="inputHarga" id="formHarga">
+    <input type="number" id="Harga">
+    <button onclick="simpanHarga()" id="simpanHarga">Simpan</button>
+</div>
+
+<div class="inputJumlah" id="formJumlah">
+    <input type="number" id="Jumlah">
+    <button onclick="simpanJumlah()" id="simpanJumlah">Simpan</button>
+</div>
+
+<!--SCRIPT FORM TAMBAH PRODUK 1-->
+<script>
+    {
+    document.getElementById("Produk").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanProduk').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Harga").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanHarga').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Jumlah").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) 
+        {
+    document.getElementById('simpanJumlah').click();
+    }
+});
+}
+</script>  
+
+<!--FORM TAMBAH PRODUK 2-->
+<div class="inputProduk" id="formProduk2">
+    <input type="text" id="Produk2">
+    <button onclick="simpanProduk2()" id="simpanProduk2">Simpan</button>
+</div>
+
+<div class="inputHarga" id="formHarga2">
+    <input type="number" id="Harga2">
+    <button onclick="simpanHarga2()" id="simpanHarga2">Simpan</button>
+</div>
+
+<div class="inputJumlah" id="formJumlah2">
+    <input type="number" id="Jumlah2">
+    <button onclick="simpanJumlah2()" id="simpanJumlah2">Simpan</button>
+</div>
+
+<!--SCRIPT FORM TAMBAH PRODUK 2-->
+<script>
+{
+document.getElementById("Produk2").addEventListener('keydown', function(event) {
+    if (event.keyCode ===13) {
+        document.getElementById('simpanProduk2').click();
+}
+});
+}
+{
+document.getElementById("Harga2").addEventListener('keydown', function(event) {
+    if (event.keyCode ===13) {
+        document.getElementById('simpanHarga2').click();
+}
+});
+}
+{
+document.getElementById("Jumlah2").addEventListener('keydown', function(event) {
+    if (event.keyCode ===13) 
+    {
+    document.getElementById('simpanJumlah2').click();
+    }
+});
+}
+</script>
+
+<!--FORM TAMBAH PRODUK 3-->
+<div class="inputProduk" id="formProduk3">
+    <input type="text" id="Produk3">
+    <button onclick="simpanProduk3()" id="simpanProduk3">Simpan</button>
+</div>
+
+<div class="inputHarga" id="formHarga3">
+    <input type="number" id="Harga3">
+    <button onclick="simpanHarga3()" id="simpanHarga3">Simpan</button>
+</div>
+
+<div class="inputJumlah" id="formJumlah3">
+    <input type="number" id="Jumlah3">
+    <button onclick="simpanJumlah3()" id="simpanJumlah3">Simpan</button>
+</div>
+
+<!--SCRIPT FORM TAMBAH PRODUK 3-->
+<script>
+    {
+    document.getElementById("Produk3").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanProduk3').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Harga3").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanHarga3').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Jumlah3").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) 
+        {
+        document.getElementById('simpanJumlah3').click();
+        }
+    });
+    }
+</script>
+
+<!--FORM TAMBAH PRODUK 4-->
+<div class="inputProduk" id="formProduk4">
+    <input type="text" id="Produk4">
+    <button onclick="simpanProduk4()" id="simpanProduk4">Simpan</button>
+</div>
+
+<div class="inputHarga" id="formHarga4">
+    <input type="number" id="Harga4">
+    <button onclick="simpanHarga4()" id="simpanHarga4">Simpan</button>
+</div>
+
+<div class="inputJumlah" id="formJumlah4">
+    <input type="number" id="Jumlah4">
+    <button onclick="simpanJumlah4()" id="simpanJumlah4">Simpan</button>
+</div>
+
+<!--SCRIPT FORM TAMBAH PRODUK 4-->
+<script>
+    {
+    document.getElementById("Produk4").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanProduk4').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Harga4").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanHarga4').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Jumlah4").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) 
+        {
+        document.getElementById('simpanJumlah4').click();
+        }
+    });
+    }
+</script>
+
+<!--FORM TAMBAH PRODUK 5-->
+<div class="inputProduk" id="formProduk5">
+    <input type="text" id="Produk5">
+    <button onclick="simpanProduk5()" id="simpanProduk5">Simpan</button>
+</div>
+
+<div class="inputHarga" id="formHarga5">
+    <input type="number" id="Harga5">
+    <button onclick="simpanHarga5()" id="simpanHarga5">Simpan</button>
+</div>
+
+<div class="inputJumlah" id="formJumlah5">
+    <input type="number" id="Jumlah5">
+    <button onclick="simpanJumlah5()" id="simpanJumlah5">Simpan</button>
+</div>
+
+<!--SCRIPT FORM TAMBAH PRODUK 5-->
+<script>
+    {
+    document.getElementById("Produk5").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanProduk5').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Harga5").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanHarga5').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Jumlah5").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) 
+        {
+        document.getElementById('simpanJumlah5').click();
+        }
+    });
+    }
+</script>
+
+<!--FORM TAMBAH PRODUK 6-->
+<div class="inputProduk" id="formProduk6">
+    <input type="text" id="Produk6">
+    <button onclick="simpanProduk6()" id="simpanProduk6">Simpan</button>
+</div>
+
+<div class="inputHarga" id="formHarga6">
+    <input type="number" id="Harga6">
+    <button onclick="simpanHarga6()" id="simpanHarga6">Simpan</button>
+</div>
+
+<div class="inputJumlah" id="formJumlah6">
+    <input type="number" id="Jumlah6">
+    <button onclick="simpanJumlah6()" id="simpanJumlah6">Simpan</button>
+</div>
+
+<!--SCRIPT FORM TAMBAH PRODUK 6-->
+<script>
+    {
+    document.getElementById("Produk6").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanProduk6').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Harga6").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanHarga6').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Jumlah6").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) 
+        {
+        document.getElementById('simpanJumlah6').click();
+        }
+    });
+    }
+</script>
+
+<!--FORM TAMBAH PRODUK 7-->
+<div class="inputProduk" id="formProduk7">
+    <input type="text" id="Produk7">
+    <button onclick="simpanProduk7()" id="simpanProduk7">Simpan</button>
+</div>
+
+<div class="inputHarga" id="formHarga7">
+    <input type="number" id="Harga7">
+    <button onclick="simpanHarga7()" id="simpanHarga7">Simpan</button>
+</div>
+
+<div class="inputJumlah" id="formJumlah7">
+    <input type="number" id="Jumlah7">
+    <button onclick="simpanJumlah7()" id="simpanJumlah7">Simpan</button>
+</div>
+
+<!--SCRIPT FORM TAMBAH PRODUK 7-->
+<script>
+    {
+    document.getElementById("Produk7").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanProduk7').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Harga7").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanHarga7').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Jumlah7").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) 
+        {
+        document.getElementById('simpanJumlah7').click();
+        }
+    });
+    }
+</script>
+
+<!--FORM TAMBAH PRODUK 8-->
+<div class="inputProduk" id="formProduk8">
+    <input type="text" id="Produk8">
+    <button onclick="simpanProduk8()" id="simpanProduk8">Simpan</button>
+</div>
+
+<div class="inputHarga" id="formHarga8">
+    <input type="number" id="Harga8">
+    <button onclick="simpanHarga8()" id="simpanHarga8">Simpan</button>
+</div>
+
+<div class="inputJumlah" id="formJumlah8">
+    <input type="number" id="Jumlah8">
+    <button onclick="simpanJumlah8()" id="simpanJumlah8">Simpan</button>
+</div>
+
+<!--SCRIPT FORM TAMBAH PRODUK 8-->
+<script>
+    {
+    document.getElementById("Produk8").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanProduk8').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Harga8").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanHarga8').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Jumlah8").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) 
+        {
+        document.getElementById('simpanJumlah8').click();
+        }
+    });
+    }
+</script>
+
+<!--FORM TAMBAH PRODUK 9-->
+<div class="inputProduk" id="formProduk9">
+    <input type="text" id="Produk9">
+    <button onclick="simpanProduk9()" id="simpanProduk9">Simpan</button>
+</div>
+
+<div class="inputHarga" id="formHarga9">
+    <input type="number" id="Harga9">
+    <button onclick="simpanHarga9()" id="simpanHarga9">Simpan</button>
+</div>
+
+<div class="inputJumlah" id="formJumlah9">
+    <input type="number" id="Jumlah9">
+    <button onclick="simpanJumlah9()" id="simpanJumlah9">Simpan</button>
+</div>
+
+<!--SCRIPT FORM TAMBAH PRODUK 9-->
+<script>
+    {
+    document.getElementById("Produk9").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanProduk9').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Harga9").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanHarga9').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Jumlah9").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) 
+        {
+        document.getElementById('simpanJumlah9').click();
+        }
+    });
+    }
+</script>
+
+<!--FORM TAMBAH PRODUK 10-->
+<div class="inputProduk" id="formProduk10">
+    <input type="text" id="Produk10">
+    <button onclick="simpanProduk10()" id="simpanProduk10">Simpan</button>
+</div>
+
+<div class="inputHarga" id="formHarga10">
+    <input type="number" id="Harga10">
+    <button onclick="simpanHarga10()" id="simpanHarga10">Simpan</button>
+</div>
+
+<div class="inputJumlah" id="formJumlah10">
+    <input type="number" id="Jumlah10">
+    <button onclick="simpanJumlah10()" id="simpanJumlah10">Simpan</button>
+</div>
+
+<!--SCRIPT FORM TAMBAH PRODUK 10-->
+<script>
+    {
+    document.getElementById("Produk10").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanProduk10').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Harga10").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanHarga10').click();
+    }
+    });
+    }
+    {
+    document.getElementById("Jumlah10").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) 
+        {
+        document.getElementById('simpanJumlah10').click();
+        }
+    });
+    }
+</script>
+
+
+<!--SCRIPT TOTAL RPNAN TO BLANK-->
+<script>
+    var blank = document.getElementsByClassName("totalNaN");
+    for (let i=0; i< blank.length; i++) {
+        var NaN = blank[i].value;
+    
+    if (isNaN(NaN)) {
+    blank[i].textContent = "Rp0"
+    }
+    }
+</script>
+    
+
+<!----------------------------------------------------------->
+
+<!--TOTALSEMUA-->
+<style>
+    .totalSemua {display: inline-block;position: absolute; right: 50px; top: 640px; width: auto; text-align: right; line-height: 0.5;}
+
+    .inputDiskon {display: none; position: fixed; left: 50%;top:25px;transform: translate(-50%);}
+
+    .pTotalSemua {line-height: 1.5;margin: 0px}
+
+</style>
+
+<div class="totalSemua">
+<h3 class="pTotalSemua" onclick="hitungSubtotal()" id="subtotalSemua">Subtotal: Rp</h3>
+
+<!--SCRIPT SUBTOTAL-->
+<script>
+    function hitungSubtotal() {
+    var total1Format = document.getElementById("Total").textContent.replace("Rp","");
+    var totalHarga1 = parseFloat(total1Format.replace(/\./g,'').replace(/,/g,'.'));
+
+    var total2Format = document.getElementById("Total2").textContent.replace("Rp","");
+    var totalHarga2 = parseFloat(total2Format.replace(/\./g,'').replace(/,/g,'.'));
+
+    var total3Format = document.getElementById("Total3").textContent.replace("Rp","");
+    var totalHarga3 = parseFloat(total3Format.replace(/\./g,'').replace(/,/g,'.'));
+
+    var total4Format = document.getElementById("Total4").textContent.replace("Rp","");
+    var totalHarga4 = parseFloat(total4Format.replace(/\./g,'').replace(/,/g,'.'));
+
+    var total5Format = document.getElementById("Total5").textContent.replace("Rp","");
+    var totalHarga5 = parseFloat(total5Format.replace(/\./g,'').replace(/,/g,'.'));
+
+    var total6Format = document.getElementById("Total6").textContent.replace("Rp","");
+    var totalHarga6 = parseFloat(total6Format.replace(/\./g,'').replace(/,/g,'.'));
+
+    var total7Format = document.getElementById("Total7").textContent.replace("Rp","");
+    var totalHarga7 = parseFloat(total7Format.replace(/\./g,'').replace(/,/g,'.'));
+
+    var total8Format = document.getElementById("Total8").textContent.replace("Rp","");
+    var totalHarga8 = parseFloat(total8Format.replace(/\./g,'').replace(/,/g,'.'));
+
+    var total9Format = document.getElementById("Total9").textContent.replace("Rp","");
+    var totalHarga9 = parseFloat(total9Format.replace(/\./g,'').replace(/,/g,'.'));
+
+    var total10Format = document.getElementById("Total10").textContent.replace("Rp","");
+    var totalHarga10 = parseFloat(total10Format.replace(/\./g,'').replace(/,/g,'.'));
+
+    var subtotalSemua = totalHarga1+totalHarga2+totalHarga3+totalHarga4+totalHarga5+totalHarga6+totalHarga7+totalHarga8+totalHarga9+totalHarga10;
+
+    document.getElementById("subtotalSemua").textContent="Subtotal: Rp"+subtotalSemua.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+}
+    
+
+</script>
+<br>
+
+<!--DISKON-->
+<h3 class="pTotalSemua" onclick="editDiskon()" id="diskonBaru">Diskon: Rp </h3><br>
+
+<!--FORM TAMBAH DISKON-->
+<div class="inputDiskon" id="formDiskon">
+    <input type="number" id="Diskon">
+    <button onclick="simpanDiskon()" id="simpanDiskon">Simpan</button>
+</div>
+
+<!--SCRIPT DISKON-->
+<script>
+function editDiskon() {
+    var displayDiskon = document.getElementById("formDiskon");
+    displayDiskon.style.display = displayDiskon.style.display ==="block" ? "none" : "block";
+
+    if (displayDiskon.style.display === "block") {
+    document.getElementById("Diskon").focus();
+    } 
+    }
+
+    function simpanDiskon() {
+    var diskonInput = parseFloat(document.getElementById("Diskon").value);
+
+    var diskonFormat = diskonInput.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+
+    document.getElementById("diskonBaru").textContent="Diskon: Rp"+diskonFormat;
+
+    document.getElementById("formDiskon").style.display = "none";
+    }
+    
+    document.getElementById("Diskon").addEventListener('keydown', function(event) {
+        if (event.keyCode ===13) {
+            document.getElementById('simpanDiskon').click();
+    }
+    });
+
+</script>
+
+<!--TOTAL-->
+<h3 class="pTotalSemua" onclick="hitungTotal()" id="totalBaru">Total: Rp </h3><br>
+
+
+<!--SCRIPT TOTAL-->
+<script>
+    function hitungTotal() 
+    {
+        var subtotalFormat = document.getElementById("subtotalSemua").textContent.replace("Subtotal: Rp","");
+        var subtotal = parseFloat(subtotalFormat.replace(/\./g,'').replace(/,/g,'.'));
+
+        var diskonFormat = document.getElementById("diskonBaru").textContent.replace("Diskon: Rp","");
+        var diskon = parseFloat(diskonFormat.replace(/\./g,'').replace(/,/g,'.'));
+
+        var total = subtotal-diskon;
+
+        document.getElementById("totalBaru").textContent="Total: Rp"+total.toLocaleString('id-ID', {minimumFractionDigits:0,maximumFractionDigits:0});
+    }
+</script>
+<!----------------------------------------------------------->
+
+
+<!--PENUTUP-->
+<style>
+    .bagianPenutup {display: block; position: absolute; width: 10cm; right: 5.5cm; top: 8cm}
+
+</style>
+<div class="bagianPenutup">
+    <h3 class="Penutup">Terima Kasih atas Pembelian Anda</h3>
+</div>
+</body>
+
+</html>
